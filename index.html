@@ -1,0 +1,355 @@
+# beka
+Ai
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Бека — IT & Сеть — 2000 ₸ — с AI-ассистентом</title>
+<meta name="description" content="Бека — настройка Wi-Fi, роутеров, оптимизация сети и простые сайты. Цена 2000 ₸. Чат-ассистент поможет быстро ответить и заказать услугу. Тел: +7 775 502 6706" />
+<style>
+  :root{
+    --bg:#071025;
+    --card:#0b1220;
+    --accent1:#2dd4bf;
+    --accent2:#60a5fa;
+    --muted:#94a3b8;
+    --glass: rgba(255,255,255,0.03);
+    --radius:14px;
+    --shadow: 0 8px 30px rgba(2,6,23,0.6);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;background:linear-gradient(180deg,#071025 0%, #0b1220 100%);color:#e6eef8;padding-bottom:120px}
+  .wrap{max-width:980px;margin:28px auto;padding:20px}
+  header{display:flex;gap:12px;align-items:center;justify-content:space-between}
+  .brand{display:flex;gap:12px;align-items:center}
+  /* LOGO: inline SVG container */
+  .logo-wrap{width:64px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);background:linear-gradient(135deg,var(--accent1),var(--accent2));}
+  h1{margin:0;font-size:20px}
+  header p{margin:0;color:var(--muted);font-size:13px}
+
+  .top-actions{display:flex;gap:8px;align-items:center}
+  .btn{display:inline-flex;gap:8px;align-items:center;padding:10px 14px;border-radius:10px;background:var(--glass);color:var(--accent1);text-decoration:none;font-weight:600;border:1px solid rgba(255,255,255,0.03)}
+  .btn.call{background:linear-gradient(90deg, rgba(45,212,191,0.12), rgba(96,165,250,0.06)); color:var(--accent1)}
+  .hero{margin-top:18px;padding:20px;border-radius:var(--radius);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:var(--shadow);display:grid;gap:16px}
+
+  /* cards and services */
+  .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:18px}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+  .price{font-weight:800;color:var(--accent1);font-size:18px}
+  footer{margin-top:22px;padding:14px;border-radius:12px;background:rgba(255,255,255,0.01);display:flex;justify-content:space-between;align-items:center;color:var(--muted)}
+
+  /* CONTACT & CTA */
+  .sticky-cta{position:fixed;right:16px;bottom:18px;display:flex;flex-direction:column;gap:8px;z-index:999}
+  .circle{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#02111a;background:linear-gradient(135deg,var(--accent1),var(--accent2));box-shadow:0 10px 30px rgba(32,50,70,0.35);text-decoration:none}
+  .circle.call{background:linear-gradient(135deg,#34D399,#10B981)}
+  .circle.msg{background:linear-gradient(135deg,#60A5FA,#3B82F6)}
+
+  /* ===== AI CHAT WIDGET ===== */
+  .chat-widget{
+    position:fixed;
+    right:16px;
+    bottom:96px;
+    width:340px;
+    max-width:92vw;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:14px;
+    box-shadow:0 20px 50px rgba(2,6,23,0.6);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    z-index:1000;
+  }
+  .chat-header{display:flex;align-items:center;gap:10px;padding:12px;border-bottom:1px solid rgba(255,255,255,0.02)}
+  .chat-title{font-weight:700}
+  .chat-sub{font-size:12px;color:var(--muted)}
+  .chat-body{padding:12px;display:flex;flex-direction:column;gap:8px;max-height:320px;overflow:auto}
+  .msg{max-width:82%;padding:8px 10px;border-radius:10px;font-size:13px}
+  .msg.user{margin-left:auto;background:linear-gradient(90deg, rgba(96,165,250,0.12), rgba(45,212,191,0.06));color:#012}
+  .msg.assistant{background:rgba(255,255,255,0.02);color:var(--muted)}
+  .chat-input{display:flex;padding:10px;border-top:1px solid rgba(255,255,255,0.02);gap:8px}
+  .chat-input textarea{flex:1;border-radius:10px;padding:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;resize:none;height:44px}
+  .chat-input button{padding:8px 12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#02111a;font-weight:700;cursor:pointer}
+
+  .chat-footer{padding:8px 12px;border-top:1px dashed rgba(255,255,255,0.02);font-size:12px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+  .mode-pill{background:rgba(255,255,255,0.02);padding:6px 8px;border-radius:999px;font-size:12px;color:var(--muted)}
+
+  /* small responsive */
+  @media(max-width:420px){
+    .chat-widget{right:8px;left:8px;width:auto;bottom:88px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <!-- INLINE SVG LOGO: буква 'Б' + Wi-Fi символ -->
+      <div class="logo-wrap" aria-hidden="true">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="#2DD4BF"/>
+              <stop offset="1" stop-color="#60A5FA"/>
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="48" height="48" rx="10" fill="url(#g1)"/>
+          <!-- Wi-Fi arcs -->
+          <path d="M14 22c3-3 7-4.5 12-4.5" stroke="rgba(255,255,255,0.85)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M18 26c1.7-1.7 4-2.55 7-2.55" stroke="rgba(255,255,255,0.85)" stroke-width="1.6" stroke-linecap="round" />
+          <circle cx="24" cy="33" r="2.8" fill="#02111a"/>
+          <!-- Letter B (stylized) -->
+          <text x="24" y="16" font-size="14" text-anchor="middle" fill="#02111a" font-weight="800" font-family="Inter, Arial">Б</text>
+        </svg>
+      </div>
+
+      <div>
+        <h1>Бека — IT & Сеть (фриланс)</h1>
+        <p>Настройка Wi-Fi, роутеры, сайты — 2000 ₸ | Тел: +7 775 502 6706</p>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <a class="btn call" href="tel:+77755026706">Позвонить</a>
+      <a class="btn" href="https://wa.me/77755026706" target="_blank" rel="noreferrer">WhatsApp</a>
+    </div>
+  </header>
+
+  <!-- main hero / services (услуг часть) -->
+  <main class="hero" role="main">
+    <div>
+      <span style="display:inline-block;padding:8px 10px;border-radius:999px;background:rgba(255,255,255,0.03);color:var(--accent1);font-weight:700">Цена: 2000 ₸</span>
+      <h2 style="margin-top:10px">Быстрое решение сетей, установка роутеров и простые сайты</h2>
+      <p style="color:var(--muted)">Я Бека — на связи. Оперативный выезд, удалённая помощь и создание простой лендинг-страницы. Бесплатная консультация в чате.</p>
+
+      <div style="margin-top:12px;display:flex;gap:8px">
+        <a class="btn call" href="tel:+77755026706">Позвонить: +7 775 502 6706</a>
+        <a class="btn" href="https://wa.me/77755026706?text=Здравствуйте%2C%20я%20хочу%20заказать%20услугу" target="_blank">Написать WhatsApp</a>
+      </div>
+    </div>
+
+    <aside class="card" aria-labelledby="about-title">
+      <h3 id="about-title">Почему выбрать меня</h3>
+      <p style="color:var(--muted)">Фиксированная цена 2000 ₸, быстро, гарантия 3 дня. Также на странице есть встроенный AI-ассистент — задавай вопросы про сеть, настройки роутера и сайт, он подскажет и подготовит чеклист.</p>
+      <p style="margin-top:12px" class="price">2000 ₸ — базовая услуга</p>
+    </aside>
+  </main>
+
+  <section class="services" aria-label="Услуги">
+    <div class="card"><h3>Настройка Wi-Fi</h3><p style="color:var(--muted)">Оптимизация покрытия, подбор канала, безопасность сети — 2000 ₸</p></div>
+    <div class="card"><h3>Установка роутера</h3><p style="color:var(--muted)">Сборка, подключение, пароль, гостевая сеть — 2000 ₸</p></div>
+    <div class="card"><h3>Создание сайта</h3><p style="color:var(--muted)">Лендинг или визитка (HTML/Tilda) — 2000 ₸</p></div>
+    <div class="card"><h3>Удалённая поддержка</h3><p style="color:var(--muted)">Подключаюсь и решаю проблемы удалённо — 2000 ₸</p></div>
+  </section>
+
+  <section class="card" id="contact" style="margin-top:18px">
+    <h3>Заказ</h3>
+    <p style="color:var(--muted)">Заполни форму — я свяжусь. Или закажи через чат-ассистента прямо сейчас.</p>
+    <form id="orderForm" onsubmit="return submitOrder(event)">
+      <label style="font-size:13px;color:var(--muted)">Имя</label>
+      <input id="o_name" placeholder="Например: Айдар" style="width:100%;padding:10px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.03);color:inherit;margin-top:6px" />
+      <label style="font-size:13px;color:var(--muted);margin-top:8px">Телефон</label>
+      <input id="o_phone" placeholder="+7 7XX XXX XXXX" style="width:100%;padding:10px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.03);color:inherit;margin-top:6px" />
+      <div style="margin-top:10px;display:flex;gap:8px">
+        <button class="big-cta" style="padding:10px 14px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#02111a;font-weight:700;cursor:pointer">Отправить в WhatsApp</button>
+        <a class="btn" href="tel:+77755026706">Позвонить сейчас</a>
+      </div>
+    </form>
+  </section>
+
+  <footer>
+    <div>
+      <div style="font-size:13px">© <strong>Бека</strong> — IT & Сеть. Тел: +7 775 502 6706</div>
+      <div style="font-size:12px;color:var(--muted)">Фиксированная цена: 2000 ₸. Работаю честно — гарантия 3 дня.</div>
+    </div>
+    <div style="font-size:12px;color:var(--muted)">Сделано с заботой ✨ + встроенный AI-помощник</div>
+  </footer>
+</div>
+
+<!-- CTA buttons -->
+<div class="sticky-cta" aria-hidden="true">
+  <a class="circle call" href="tel:+77755026706" title="Позвонить Беке">📞</a>
+  <a class="circle msg" href="https://wa.me/77755026706" target="_blank" rel="noreferrer" title="WhatsApp">💬</a>
+</div>
+
+<!-- ===== CHAT WIDGET ===== -->
+<div id="chatWidget" class="chat-widget" role="dialog" aria-label="AI помощник">
+  <div class="chat-header">
+    <div style="display:flex;flex-direction:column">
+      <div class="chat-title">Бека AI — Помощник</div>
+      <div class="chat-sub">Быстро отвечает на вопросы по сети, настройке и сайтам</div>
+    </div>
+    <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
+      <div id="aiMode" class="mode-pill">Режим: <strong id="modeLabel">Локальный</strong></div>
+      <button id="toggleChat" title="Свернуть" style="background:transparent;border:none;color:var(--muted);cursor:pointer">—</button>
+    </div>
+  </div>
+
+  <div id="chatBody" class="chat-body" aria-live="polite">
+    <!-- сообщения будут сюда -->
+    <div class="msg assistant">Привет! Я ассистент Беки. Могу помочь настроить Wi-Fi, выбрать роутер и подготовить чеклист для выезда. Напиши свой вопрос — я отвечу.</div>
+  </div>
+
+  <div class="chat-input">
+    <textarea id="chatInput" placeholder="Напиши вопрос..." maxlength="800"></textarea>
+    <button id="sendBtn">Отправить</button>
+  </div>
+
+  <div class="chat-footer">
+    <div class="mode-pill">Подключение: <span id="connectStatus">Не подключено</span></div>
+    <div style="display:flex;gap:8px">
+      <button id="connectBtn" class="mode-pill" style="cursor:pointer">Подключить ИИ</button>
+      <button id="clearBtn" class="mode-pill" style="cursor:pointer">Очистить</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ===== Basic site JS (form -> WhatsApp) ===== */
+  function submitOrder(e){
+    e.preventDefault();
+    const name = document.getElementById('o_name').value || "Не указан";
+    const phone = document.getElementById('o_phone').value || "Не указан";
+    const message = `Здравствуйте, меня зовут ${name}. Я хочу заказать услугу. Тел: ${phone}. Цена 2000 тг.`;
+    const wa = `https://wa.me/77755026706?text=${encodeURIComponent(message)}`;
+    window.open(wa,'_blank');
+    return false;
+  }
+
+  /* ===== Chat widget logic ===== */
+  const chatBody = document.getElementById('chatBody');
+  const chatInput = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('sendBtn');
+  const connectBtn = document.getElementById('connectBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  const connectStatus = document.getElementById('connectStatus');
+  const modeLabel = document.getElementById('modeLabel');
+  const aiModeState = { connected: false, endpoint: '', type: 'local' }; // type: 'local' | 'remote'
+
+  // Add message to chat
+  function addMessage(text, who='assistant'){
+    const d = document.createElement('div');
+    d.className = 'msg ' + (who==='user' ? 'user' : 'assistant');
+    d.textContent = text;
+    chatBody.appendChild(d);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  // Simple local fallback AI (deterministic helpers)
+  function localAIReply(prompt){
+    // very small rule-based helper: looks for keywords and returns helpful checklists
+    const q = prompt.toLowerCase();
+    if(q.includes('wifi') || q.includes('wi-fi') || q.includes('роут')) {
+      return "Чеклист для настройки Wi-Fi:\n• Проверь питание роутера\n• Подключи WAN кабель к провайдеру\n• В панели роутера: обнови канал (auto или 1/6/11) и установи WPA2 пароль\n• Настрой гостевую сеть, если нужно\n• Проверь скорость и зону покрытия\nЕсли хочешь — пришлю точные команды/скриншоты для популярной модели роутера. Цена базовой услуги: 2000 ₸.";
+    }
+    if(q.includes('сайт') || q.includes('лендинг') || q.includes('tilda')) {
+      return "Если делать лендинг: нужно:\n1) Уточнить цель (визитка/услуга)\n2) Подготовить тексты и 3 фото\n3) Выбрать цвета/лэндинг блоки\n4) Я сделаю за 2000 ₸. Могу экспортировать HTML или подготовить на Tilda.";
+    }
+    if(q.includes('цена') || q.includes('сколько')) {
+      return "Фиксированная цена базовой услуги — 2000 ₸. Для сложных задач (несколько роутеров, полный сайт с оплатой) — обсудим цену отдельно.";
+    }
+    // default fallback
+    return "Хороший вопрос! Я могу:\n• Подготовить пошаговый чеклист для настройки сети\n• Сгенерировать код для простой страницы\n• Подсказать, как ускорить интернет\nНапиши подробнее, что именно нужно.";
+  }
+
+  // send message (will try remote if connected, otherwise local)
+  async function sendMessage(){
+    const text = chatInput.value.trim();
+    if(!text) return;
+    addMessage(text, 'user');
+    chatInput.value = '';
+    addMessage('...', 'assistant'); // placeholder
+    // if connected to remote endpoint => send there
+    if(aiModeState.connected && aiModeState.endpoint){
+      try {
+        const msgEl = Array.from(chatBody.querySelectorAll('.msg.assistant')).pop();
+        const resp = await sendToRemoteAI(text);
+        msgEl.textContent = resp;
+      } catch(err){
+        const msgEl = Array.from(chatBody.querySelectorAll('.msg.assistant')).pop();
+        msgEl.textContent = "Ошибка при обращении к ИИ: " + err.message + ". Использую локальный помощник.";
+        const fallback = localAIReply(text);
+        addMessage(fallback, 'assistant');
+      }
+    } else {
+      // local fallback
+      const msgEl = Array.from(chatBody.querySelectorAll('.msg.assistant')).pop();
+      msgEl.textContent = localAIReply(text);
+    }
+  }
+
+  sendBtn.addEventListener('click', sendMessage);
+  chatInput.addEventListener('keydown', function(e){ if(e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); sendMessage(); } });
+
+  clearBtn.addEventListener('click', ()=> {
+    chatBody.innerHTML = '';
+    addMessage('Привет! Я ассистент Беки. Могу помочь настроить Wi-Fi, выбрать роутер и подготовить чеклист для выезда. Напиши свой вопрос — я отвечу.');
+  });
+
+  // Toggle connect: prompts user for endpoint (simple)
+  connectBtn.addEventListener('click', async ()=>{
+    if(!aiModeState.connected){
+      // Ask for endpoint — user can put a server URL that proxies requests to OpenAI (recommended)
+      const ep = prompt("Вставь URL сервера-прокси (например https://my-proxy.example.com/api/chat). НЕ вставляй API-ключ сюда в браузер.", "");
+      if(!ep) return;
+      aiModeState.endpoint = ep;
+      aiModeState.connected = true;
+      aiModeState.type = 'remote';
+      modeLabel.textContent = 'Remote';
+      connectStatus.textContent = 'Подключено';
+      connectBtn.textContent = 'Отключить';
+      addMessage("Подключен удалённый AI: ответы будут через ваш сервер. Если сервер не отвечает — будет использован локальный режим.", 'assistant');
+    } else {
+      aiModeState.connected = false;
+      aiModeState.endpoint = '';
+      aiModeState.type = 'local';
+      modeLabel.textContent = 'Локальный';
+      connectStatus.textContent = 'Не подключено';
+      connectBtn.textContent = 'Подключить ИИ';
+      addMessage("Отключён удалённый AI. Возвращаемся в локальный режим.", 'assistant');
+    }
+  });
+
+  // sendToRemoteAI: POST to user provided endpoint, expects JSON { prompt: "..."} and returns { reply: "..." }
+  async function sendToRemoteAI(prompt){
+    if(!aiModeState.endpoint) throw new Error("Нет endpoint'а");
+    const res = await fetch(aiModeState.endpoint, {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({ prompt })
+    });
+    if(!res.ok) {
+      const text = await res.text();
+      throw new Error('HTTP ' + res.status + ': ' + text);
+    }
+    const data = await res.json();
+    if(data && data.reply) return data.reply;
+    if(typeof data === 'string') return data;
+    throw new Error('Неправильный формат ответа от сервера');
+  }
+
+  // small UI: minimize chat
+  document.getElementById('toggleChat').addEventListener('click', function(){
+    const widget = document.getElementById('chatWidget');
+    if(widget.style.height && widget.style.height !== '') {
+      widget.style.height = '';
+      this.textContent = '—';
+      document.getElementById('chatBody').style.display = 'flex';
+      document.querySelector('.chat-input').style.display = 'flex';
+      document.querySelector('.chat-footer').style.display = 'flex';
+    } else {
+      widget.style.height = '46px';
+      this.textContent = '+';
+      document.getElementById('chatBody').style.display = 'none';
+      document.querySelector('.chat-input').style.display = 'none';
+      document.querySelector('.chat-footer').style.display = 'none';
+    }
+  });
+
+  // initial small note
+  connectStatus.textContent = 'Не подключено (локально)';
+</script>
+
+</body>
+</html>
